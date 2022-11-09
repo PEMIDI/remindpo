@@ -20,6 +20,5 @@ from config import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls'))
 ]
-if settings.DEBUG:
-    urlpatterns += path('api-auth/', include('rest_framework.urls'))
