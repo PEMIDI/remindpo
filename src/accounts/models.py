@@ -1,13 +1,12 @@
-from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import UserManager, AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import ugettext_lazy as _
 
 from utils.basemodel import BaseModel
 
 
-class User(AbstractBaseUser, BaseModel):
+class User(AbstractUser, BaseModel):
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
