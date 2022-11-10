@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 
-from rest_framework.generics import UpdateAPIView, RetrieveAPIView
+from rest_framework.generics import UpdateAPIView, RetrieveAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from accounts.api.serializers import UserProfileSerializer
+from accounts.api.serializers import UserProfileSerializer, UserRegisterSerializer, UserChangePasswordSerializer
 
 User = get_user_model()
 
@@ -29,5 +29,20 @@ class UserProfileRetrieveUpdateView(RetrieveAPIView, UpdateAPIView):
         return Response(serializer.data)
 
 
+class UserRegistrationCreateAPIView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        qs = self.get_queryset()
+        serializer = self.serializer_class
+        serializer.is_valid(qs, raise_exception=True)
+        return Response(serializer.data)
 
 
+class UserChangePasswordAPIView(UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserChangePasswordSerializer
+
+    def get_object(self):
+        return self.request.user
