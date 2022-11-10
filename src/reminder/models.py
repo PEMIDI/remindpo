@@ -18,7 +18,7 @@ class Reminder(BaseModel):
         db_table = 'reminder'
 
     def __str__(self):
-        return f"{self.title}, at {self.scheduled_at} "
+        return f"{self.title}, at {self.scheduled_at}"
 
 
 class Alert(BaseModel):
