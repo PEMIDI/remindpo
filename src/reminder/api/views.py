@@ -19,7 +19,7 @@ class ReminderModelViewSet(ModelViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        return qs.filter(user=self.request.user).prefetch_related('category')
+        return qs.filter(user=self.request.user).select_related('category')
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
