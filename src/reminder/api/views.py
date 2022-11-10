@@ -14,8 +14,8 @@ class ReminderModelViewSet(ModelViewSet):
     queryset = Reminder.objects.all()
     permission_classes = [IsAuthenticated]
     serializer_class = ReminderSerializer
-    lookup_field = 'pk'
     pagination_class = StandardPagination
+    lookup_field = 'pk'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -24,7 +24,7 @@ class ReminderModelViewSet(ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=['get', 'put, paths'])
+    @action(detail=True, methods=['get'])
     def snooze(self, request, *args, **kwargs):
         reminder = self.get_object()
         reminder.alert_time += timedelta(minutes=10)
