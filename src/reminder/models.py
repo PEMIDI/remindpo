@@ -33,6 +33,9 @@ class Alert(BaseModel):
         verbose_name_plural = _('alerts')
         db_table = 'alert'
 
+    def __str__(self):
+        return f"alert at {self.alert_time} for {self.reminder.title} reminder"
+
 
 class Category(BaseModel):
     title = models.CharField(max_length=32, verbose_name=_('title'))
@@ -41,6 +44,9 @@ class Category(BaseModel):
         verbose_name = _('category')
         verbose_name_plural = _('categories')
         db_table = 'category'
+
+    def __str__(self):
+        return self.title
 
 
 class ReminderCategory(BaseModel):

@@ -16,15 +16,13 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title']
     search_fields = ['title']
 
-    inlines = [ReminderCategoryInline]
-
 
 @admin.register(Reminder)
 class ReminderAdmin(admin.ModelAdmin):
     list_display = ['title', 'scheduled_at']
     search_fields = ['title', 'message']
 
-    inlines = [AlertInline]
+    inlines = [AlertInline, ReminderCategoryInline]
 
 
 
