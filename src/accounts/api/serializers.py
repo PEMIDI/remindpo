@@ -28,6 +28,17 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         attrs.pop('password2')
         return attrs
 
+    def create(self, validated_data):
+        user = User(
+            username=validated_data['username'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            email=validated_data['email']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+
 
 class UserChangePasswordSerializer(serializers.ModelSerializer):
     old_password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
