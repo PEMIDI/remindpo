@@ -6,13 +6,14 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from reminder.api.paginations import StandardPagination
+from reminder.api.permissions import UserObjectOwner
 from reminder.api.serializers import ReminderSerializer
 from reminder.models import Reminder
 
 
 class ReminderModelViewSet(ModelViewSet):
     queryset = Reminder.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, UserObjectOwner]
     serializer_class = ReminderSerializer
     pagination_class = StandardPagination
     lookup_field = 'pk'

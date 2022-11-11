@@ -33,12 +33,6 @@ class UserRegistrationCreateAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
 
-    def post(self, request, *args, **kwargs):
-        qs = self.get_queryset()
-        serializer = self.serializer_class
-        serializer.is_valid(qs, raise_exception=True)
-        return Response(serializer.data)
-
 
 class UserChangePasswordAPIView(UpdateAPIView):
     permission_classes = [IsAuthenticated]
