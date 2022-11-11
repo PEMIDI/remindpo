@@ -12,7 +12,7 @@ A minimal app to manage your events
 docker-compose build
 ```
 
-##or Run the project without Docker 🤷‍♂️
+## or Run the project without Docker 🤷‍♂️
 #  Setup Guide, step by step:
 ## Clone the  Repository
 
