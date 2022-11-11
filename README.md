@@ -1,6 +1,9 @@
-# Remindpo
-A minimal app to manage your events
-
+# RemindPo
+### A minimal app to manage your events
+![img_1.png](img_1.png)
+<br>
+<br>
+<br>
 ### DB Schema
 
 ![img.png](img.png)
